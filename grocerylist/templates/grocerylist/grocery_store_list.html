@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+	
+	<h1>Grocery store list</h1>
+	
+	{% for grocery_store in queryset %}
+		{{grocery_store.name}}
+	
+	{% endfor %}
+{% endblock %}

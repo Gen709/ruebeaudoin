@@ -1,0 +1,12 @@
+from django.urls import path
+from .views import index, grocery_list_view, grocery_store_create_view, grocery_store_list_view, groceryitem_delete_view
+
+urlpatterns = [
+    
+    path('', index, name='index'),
+    path('wishlist/', grocery_list_view, name='wishlist'),
+    path('store/create/', grocery_store_create_view, name='grocery-store-create'),
+    path('store/list/', grocery_store_list_view, name='grocery-store-list'),
+    path('groceryitem/delete/<int:pk>/', groceryitem_delete_view, name='groceryitem-delete')
+    
+    ]

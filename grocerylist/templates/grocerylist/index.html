@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='row'>
+	 <h2>test_title</h2>
+</div>
+
+<div class='row'>
+	 <ul>
+		{% for test_loop_variabble_name in object_list %}
+			<li> {{test_loop_variabble_name.test_attribute}}</li>
+		{% endfor %}
+	 </ul>
+</div>
+{% endblock %}

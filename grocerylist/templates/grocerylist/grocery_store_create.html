@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+	<form action="{%url 'grocery_store-create' %}" method="post">
+	{% csrf_token %}
+		{{ grocery_store_form }}
+		<input type="submit" value="Submit">
+	</form>
+{% endblock %}
