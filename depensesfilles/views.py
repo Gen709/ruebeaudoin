@@ -10,6 +10,9 @@ class DepensesCreateView(CreateView):
     fields = "__all__"
     exclude = ('status',)
     
+class DepensesListView(ListView):
+    model=Depenses
+    fields="__all__"
 class DepenseStatusCreateView(CreateView):
     model=DepenseStatus
     fields="__all__"

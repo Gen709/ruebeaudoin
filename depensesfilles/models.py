@@ -8,7 +8,7 @@ class TimeStampMixin(models.Model):
     updated_at = models.DateField(auto_now=True)
     
 class DepenseStatus(models.Model):
-    desc = models.CharField(max_length=200)
+    desc = models.CharField(max_length=200, unique=True)
     
     def get_absolute_url(self):
         return reverse('depensestatus-detail-view', kwargs={'pk' : self.pk})
