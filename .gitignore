@@ -14,7 +14,8 @@ db.sqlite3
 # Static folder at project root
 /static/
 /mysite/settings.py
-
+settings.py
+mysite/settings.py
 
 # macOS
 ._*
