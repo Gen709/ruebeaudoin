@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-	<form action="{%url 'depense-create-view' %}" method="post">
+	<form action="{%url 'depense-create-view' %}" method="post" enctype='multipart/form-data'>
 	{% csrf_token %}
 		<table>
 		{{ form.as_table}}
