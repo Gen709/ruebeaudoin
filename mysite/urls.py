@@ -23,5 +23,6 @@ urlpatterns = [
     # path('', views.home, name='home'),
     path('grocerylist/', include('grocerylist.urls')),
     path('canadiannutrientfile/', include('canadiannutrientfile.urls')),
+    path('filles/', include('depensesfilles.urls')),
     # path('', include('canadian_nutrient_file.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

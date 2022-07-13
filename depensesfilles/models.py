@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 # Create your models here.
@@ -8,6 +9,14 @@ class TimeStampMixin(models.Model):
     
 class DepenseStatus(models.Model):
     desc = models.CharField(max_length=200)
+    
+    def get_absolute_url(self):
+        return reverse('depensestatus-detail-view', kwargs={'pk' : self.pk})
+    
+    def __str__(self):
+        
+        return self.desc
+        
     
 class Depenses(TimeStampMixin):
     date = models.DateField()
