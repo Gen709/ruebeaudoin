@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-+mn13bc=6d23or(rjzhb1ke3kk5w#f16$2q217w*u_l8bpl!pb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', '.gen709.pythonanywhere.com']
 
 
 # Application definition
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'grocerylist.apps.GrocerylistConfig',
     'canadiannutrientfile.apps.CanadiannutrientfileConfig',
     'bills.apps.BillsConfig',
+    'depensesfilles.apps.DepensesfillesConfig',
     
     'django_extensions',
     
