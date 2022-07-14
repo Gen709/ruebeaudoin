@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+	<h1>Détail de la dépense</h1>
+		Catégorie: {{depense.categorie}}<br>
+		Description: {{depense.description}} <br>
+		Montant: {{depense.amount}} <br>
+		Status: {{depense.status}}
+		
+		<img src="{{depense.ref.url}}" alt="Italian Trulli">
+		
+{% endblock %}
