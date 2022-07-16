@@ -2,7 +2,9 @@
 {% load static %}
 
 {% block content %}
+
 	<h1>Add Grocery Store</h1>
+	
 	<form action="{%url 'grocery-store-create' %}" method="post">
 	{% csrf_token %}
 		{{ grocery_store_form }}
@@ -10,6 +12,7 @@
 	</form>
 	
 	<h4>Store already created</h4>
+	
 	<ul>
 	{% for store in stores %}
 		<li>{{store.name}}</li>
@@ -17,4 +20,5 @@
 		No store have been created yet !
 	{% endfor %}
 	 </ul>
+	 
 {% endblock %}
