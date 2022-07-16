@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
+{% block extrahead %}
+
+<link rel="stylesheet" href="{% static 'grocerylist/css/css.css' %}">
+
+{% endblock %}
+
+
 {% block content %}
 
 	<h1>Add Grocery Store</h1>
@@ -13,12 +21,21 @@
 	
 	<h4>Store already created</h4>
 	
-	<ul>
+	<div class="container-fluid">
 	{% for store in stores %}
-		<li>{{store.name}}</li>
-	{% empty %}
-		No store have been created yet !
+		<div class="row">
+			<div class=col>
+				{{store.name|title}}
+			</div>
+			
+			<div class="col">
+				<a href="#">
+					<i class="fa fa-thin fa-minus-circle" type="button" id="{{ store.id }}" name="delete_grocery_item"></i>
+				</a>
+			</div>
+			
+		</div>
 	{% endfor %}
-	 </ul>
-	 
+	</div>
+		 
 {% endblock %}
