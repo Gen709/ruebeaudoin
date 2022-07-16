@@ -36,6 +36,11 @@ def grocery_store_create_view(request):
         context['stores'] = GroceryStore.objects.all()
     return render(request, 'grocerylist/grocery_store_create.html', context)
 
+def grocery_store_delete_view(request, pk):
+    gs = GroceryStore.objects.get(id=pk)
+    gs.delete()
+    return redirect('grocery-store-create')
+
 def grocery_list_view(request):
     context={}
     if request.method == "POST":
