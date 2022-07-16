@@ -25,7 +25,7 @@ def grocery_store_create_view(request):
         form = GroceryStoreModelForm(request.POST)
         if form.is_valid():
             created, objects = GroceryStore.objects.get_or_create(name=form.cleaned_data['name'])
-            return redirect('grocery-store-list')
+            return redirect('grocery-store-create')
         else:
             # form = GroceryStoreModelForm(request.POST)
             context['grocery_store_form'] = form
