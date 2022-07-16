@@ -17,11 +17,11 @@
 						Épicerie
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<li><a class="dropdown-item" href="{% url 'wishlist' %}">Épicerie</a></li>
 						<li><a class="dropdown-item" href="{% url 'wishlist' %}">Liste d'épicerie</a></li>
 						<li><a class="dropdown-item" href="{% url 'depense-create-view' %}">Ajouter Facture</a></li>
 						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="{% url 'grocery-store-create' %}">Ajouter magasin</a></li>
-						<li><a class="dropdown-item" href="{% url 'grocery-store-list' %}">Liste des magasins</a></li>
+						<li><a class="dropdown-item" href="{% url 'grocery-store-create' %}">Liste des magasins</a></li>
 					</ul>
 				</li>
 				
