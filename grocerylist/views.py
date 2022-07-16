@@ -33,6 +33,7 @@ def grocery_store_create_view(request):
     else:
         form = GroceryStoreModelForm()
         context['grocery_store_form'] = form
+        context['stores'] = GroceryStore.objects.all()
     return render(request, 'grocerylist/grocery_store_create.html', context)
 
 def grocery_list_view(request):

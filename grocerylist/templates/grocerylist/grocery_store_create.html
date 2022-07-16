@@ -2,9 +2,19 @@
 {% load static %}
 
 {% block content %}
-	<form action="{%url 'grocery_store-create' %}" method="post">
+	<h1>Add Grocery Store</h1>
+	<form action="{%url 'grocery-store-create' %}" method="post">
 	{% csrf_token %}
 		{{ grocery_store_form }}
 		<input type="submit" value="Submit">
 	</form>
+	
+	<h4>Store already created</h4>
+	<ul>
+	{% for store in stores %}
+		<li>{{store.name}}</li>
+	{% empty %}
+		No store have been created yet !
+	{% endfor %}
+	 </ul>
 {% endblock %}
