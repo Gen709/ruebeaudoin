@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %}
+	<script src="{% static 'receipy_url/js/serach_food_name.js' %}"> </script>
+{% endblock %}
+
+
+{% block content %}
+	<div class="container-fluid">
+		
+	<form action="{% url 'recipy_insert' %}" method="post">
+		{% csrf_token %}
+	
+
+		<h1>Update form</h1>
+		testing if the parent is in the database or not :<br>
+			{{parent.recipy_title}} {{parent_creation_msg}}
+			<div class="row">
+				<div class="col-sm-6">
+					<table>
+						{{recipy_form.as_table}}
+					</table>
+				</div>
+			</div>
+		<!-- <p>Checking the integrity of the user input</p>
+		{% for k,v in user_input_dict.items %}
+				{{ k }} has {{v|length}} elements -> {{v}}<br>
+			{% endfor %}
+		<p>Checking the post data</p>
+		{% for k,v in post.items %}
+				{{ k }} {{v}}<br>
+			{% endfor %} -->
+		<h3>Ingredients</h3>
+		{{ingredient_creation_message}}
+		<div class="d-grid gap-3">
+		
+			{% for ingredient in ingredients_obj_list %}
+				<div class="row border bg-light ingredient_item pb-4">
+					<label for="formGroupExampleInput" class="form-label"><b><small>{{ ingredient.ingredient_str }}</small></b></label>
+					
+					<div class="col-md-2">
+						<input type="text" class="form-control" name="Qty_{{ forloop.counter }}" id="Qty_{{ forloop.counter }}" value={{ingredient.qty}}>
+					</div>
+					
+					<div class="col-md-2">
+						<input type="text" class="form-control" name="Unit_{{ forloop.counter }}" id="Unit_{{ forloop.counter }}" value={{ingredient.unit}}>
+					</div>
+					
+					<div class="col">
+						<input type="text" class="form-control" name="Ingredient_{{ forloop.counter }}" id="Ingredient_{{ forloop.counter }}" value="{{ingredient.food_name.food_description}}">
+					</div>
+					
+						<input type="hidden" class="form-control" name="Ingredient_id_{{ forloop.counter }}" id="Ingredient_id_{{ forloop.counter }}" value=ingredient.food_name.food_id>
+						 
+					
+					<!-- need an hidden input type that js will show and hide for suggestions -->
+					<div class="suggesstion-box" name="suggesstion-box_no_[]" id="suggesstion-box_no_{{ forloop.counter }}"></div>
+					
+					<div class="conversion_factor_multiple_choice_box" name="conversion_factor_multiple_choice_box_[]" id="conversion_factor_multiple_choice_box_{{ forloop.counter }}">
+						<label for="formGroupExampleInput" class="form-label"><b><small>Conversion Factors</small></b></label>
+						
+						{% for cv in ingredient.get_conversion_factors %}				
+							<div class="form-check">
+							
+								{% if cv.id == ingredient.conversion_factor.id %}
+									<input class="form-check-input" checked type="radio" name="convertion_factor_{{ ingredient.ingredient_str }}" id="convertion_factor_{{ cv.id }}" value="{{ cv.id }}">									
+								{% else %}
+									<input class="form-check-input" type="radio" name="convertion_factor_{{ ingredient.ingredient_str }}" id="convertion_factor_{{ cv.id }}" value="{{ cv.id }}">														
+								{% endif %}
+								
+								<label class="form-check-label" for="flexRadioDefault1">
+									{{cv.mesure_name.mesure_name}}
+								</label>
+								
+							</div>
+						{% endfor %}
+						
+					</div>
+				</div>
+					
+			{% endfor %}
+		</div>
+		
+		
+		<h3> Steps </h3>
+		{{steps_creation_message}}
+		<div class="d-grid gap-3">
+				{% for step in steps_obj_list %}
+				<div class="row border bg-light step_item pb-4">
+					<div class="form-group">
+						<label for="exampleFormControlTextarea1">
+							<b>Step {{ forloop.counter }}</b>
+						</label>
+						<textarea class="form-control text-left" id="exampleFormControlTextarea1" rows="3">
+							{{ step.step }}
+						</textarea>
+					</div>
+				</div>
+				{% endfor %}
+			
+		</div>
+		
+		<h3> Images </h3>
+		{% for image in images_obj_list %}
+			{{image.image}}
+			
+		{% endfor %}
+		<div class="row">
+			<div class="col-sm-6">
+				<button type="submit" class="btn btn-primary">Submit Form</button>
+			</div>
+		</div>
+	</form>
+	</div>
+		<!-- <h3>{{error_message}}</h3>
+		{% if user_input_data %}
+			<h4> There is a probleme at the user input level, the list are not the same lenght</h4>
+			{% for user_input in user_input_data %}
+				{{user_input}}
+			{% endfor %}
+		{% endif %}
+		
+		<h5> the object list gives:</h5>
+		{% for error in error_list %}
+			{{ error }} <br>
+		{% endfor %}
+		<h5>The content of the POST variable is:</h5>
+		{% for post in post_items %}
+			{{ post }} <br>
+		{% endfor %} -->
+{% endblock %}

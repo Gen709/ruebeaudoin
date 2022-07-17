@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %}
+	<script src="{% static 'receipy_url/js/serach_food_name.js' %}"> </script>
+{% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+	
+		<div class="row border text-white" style='background-image: url({{image_list.0}}); height: 400px; opacity: 1;'>
+			
+			<div class="col">
+				<div class="row" id="title"> 
+					<h1>{{Recipe_title}}</h1>
+				</div>
+			</div>
+			
+			<div class="col">
+				<div class="row" id="source"> 
+					<p><b>Source:</b> <a href="{{Recipe_url}}" target="_blank" rel="noopener noreferrer">{{Recipe_source}}</a></p>
+				</div>
+				<div class="row" id="yield">
+					<p><b>Yield :</b> {{yield}}</p>
+				</div>
+				<div class="row" id="yield">
+					<p><b>Preparation time :</b> {{prep_time}}</p>
+				</div>
+				<div class="row" id="yield">
+					<p><b>Cooking time :</b> {{cook_time}}</p>
+				</div>
+				<div class="row" id="yield">
+					<p><b>Total Time :</b> {{total_time}}</p>
+				</div>
+			</div>
+			
+		</div>
+	    
+	</div>
+	
+	<div class="container-fluid">
+		
+		<form action="{% url 'recipy_insert' %}" method="post">
+			{% csrf_token %}
+	
+			<div class="row border" id="ingredient-steps">
+			
+				<div class="row" id="yield">
+					<div class="col-sm-2">
+						<p><b>Yield :</b> {{yield}}</p>
+					</div>
+					<div class="col">
+						<input type="text" name="yield_int" id=yield_id></input>
+					</div>
+				</div>
+				
+				<div class="row section-title">
+					<h2>Select Food Name</h2>
+				</div>
+				
+				<div class="row section-content">
+					<div class="col-md ingredient">
+					
+					<div class="d-grid gap-3">
+					{% for ingredient_str, dic in ingrdient_list_dict_zip %}
+						<div class="row pb-3 border bg-light ingredient_item">
+							<label for="formGroupExampleInput" class="form-label"><b><small>{{ ingredient_str }}</small></b></label>
+							<div class="col-md-2">
+								<input type="text" class="form-control" name="Qty_{{ forloop.counter }}" id="Qty_{{ forloop.counter }}" value={{dic.Qty}}>
+							</div>
+							<div class="col-md-2">
+								<input type="text" class="form-control" name="Unit_{{ forloop.counter }}" id="Unit_{{ forloop.counter }}" value={{dic.Unit}}>
+							</div>
+							
+							<div class="col">
+								<input type="text" class="form-control" name="Ingredient_{{ forloop.counter }}" id="Ingredient_{{ forloop.counter }}">
+							</div>
+							
+								<input type="hidden" class="form-control" name="Ingredient_id_{{ forloop.counter }}" id="Ingredient_id_{{ forloop.counter }}" value=#>
+								 
+							
+							<!-- need an hidden input type that js will show and hide for  -->
+							<div class="suggesstion-box" name="suggesstion-box_no_[]" id="suggesstion-box_no_{{ forloop.counter }}"></div>
+							
+							<div class="conversion_factor_multiple_choice_box" name="conversion_factor_multiple_choice_box_[]" id="conversion_factor_multiple_choice_box_{{ forloop.counter }}">
+							
+							</div>
+						</div>
+					{% endfor %}
+						<div class="row pb-3">
+							<div class="col-sm-3">
+								<button type="submit" class="btn btn-primary">Submit</button>
+							</div>
+						</div>
+					</div>
+					
+					
+					</div>
+					
+					<div class="col-md step">
+					
+					<div class="d-grid gap-3">
+						{% for step in step_list %}
+						<div class="row pb-3 border bg-light">{{ step }}</div>
+						{% endfor %}
+					</div>
+					
+					
+					</div>
+					
+				
+					
+					
+				</div>
+			
+			</div>
+			
+		</form>
+				
+	</div>
+{% endblock %}
