@@ -52,7 +52,7 @@ $(document).ready(function(){
 										
 										<div class="col">
 											<button type="submit" class="btn btn-success">Ajouter</button>
-											<button type="button" class="btn btn-danger remove-grocery-item-section">Annuler</button>
+											<button type="button" class="btn btn-secondary remove-grocery-item-section">Annuler</button>
 										</div>
 										
 									</div>
