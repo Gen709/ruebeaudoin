@@ -33,3 +33,25 @@ def search_food_name(request):
             return HttpResponse('', mimetype)
     else:
         return render(request, 'canadian_nutrient_file/search_form.html')
+    
+
+
+def search_conversion_factor(request):
+    
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        food_name_id = unquote(request.GET['foodnameid'])
+        lang = request.GET['lang']
+        if lang == "fr":
+            data_list = [{conv_factor.id: {'description':conv_factor.mesure_name.mesure_name_f, 
+                                           'cf_value': conv_factor.conversion_factor_value} } for conv_factor in FoodName.objects.get(food_id=food_name_id).conversionfactor_set.all()]
+        if lang == "en":
+            data_list = [{conv_factor.id: {'description':conv_factor.mesure_name.mesure_name, 
+                                           'cf_value': conv_factor.conversion_factor_value} } for conv_factor in FoodName.objects.get(food_id=food_name_id).conversionfactor_set.all()]
+        data = JsonResponse(data_list, safe=False)
+       
+    else:
+        data_list = [{1:{'description':"Failed"}}]
+        data = JsonResponse(data_list, safe=False)
+        
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
