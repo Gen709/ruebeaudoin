@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %}
+	<!-- <script src="{% static 'receipy_url/js/serach_food_name.js' %}"> </script> -->
+{% endblock %}
+
+{% block content %}
+	<form method="post">
+		{% csrf_token %}
+		<div class="container-fluid">
+		
+			<div class="row border" style='background-image: url({{image_list.0}}); height: 200px; opacity: 1;'>
+				
+				<div class="col">
+					<div class="row" id="title"> 
+						<h1>{{recipy.recipy_title}}</h1>
+					</div>
+					<div class="row">
+						<input class="btn btn-danger" type="submit" value="Confirm Delete">
+					</div>
+					<div class="row">
+						<input class="btn btn-danger" type="submit" value="Confirm Delete">
+					</div>
+					
+				</div>
+				
+				<div class="col">
+					<div class="row" id="source"> 
+						<p><b>Source:</b> <a href="{{recipy.recipy_url}}" target="_blank" rel="noopener noreferrer">{{recipy.Recipe_source}}</a></p>
+					</div>
+					<div class="row" id="yield">
+						<p><b>Yield :</b> {{recipy.recipy_yield_str}}</p>
+					</div>
+					<div class="row" id="yield">
+						<p><b>Preparation time :</b> {{recipy.prep_time}}</p>
+					</div>
+					<div class="row" id="yield">
+						<p><b>Cooking time :</b> {{recipy.cook_time}}</p>
+					</div>
+					<div class="row" id="yield">
+						<p><b>Total Time :</b> {{recipy.total_time}}</p>
+					</div>
+				</div>
+				
+			</div>
+		
+		</div>
+		
+		<div class="container-fluid">
+			
+				<div class="row border" id="ingredient-steps">
+				
+					<div class="col">
+						<div class="row">
+							<h3>Ingredients</h3>
+						</div>
+						{% for ingredient in recipy.ingredients_set.all %}
+							<p>{{ingredient.ingredient_str}}</p>
+						{% endfor %}
+					</div>
+					
+					<div class="col">
+						<div class="row">
+							<h3>Steps</h3>
+						</div>
+						{% for step in recipy.steps_set.all %}
+							<b>Step {{ forloop.counter }}</b>
+							<p>{{step.step}}</p>
+						{% endfor %}
+					</div>
+					
+				</div>
+				
+		</div>
+		
+		<div class="container-fluid">
+			
+			<div class="row border" id="ingredient-steps">
+					
+				<div class="row">
+					<h3>Nutritional Informations</h3>
+				</div>
+					
+				<div class="row">
+					
+					{% for ingredient in recipy.ingredients_set.all %}
+						<div class="row">
+							<div class="col">
+								<p>{{ingredient.food_name.food_description_f}}</p>
+							</div>
+							<div class="col">
+								{% for nutrient in ingredient.food_name.Nutrient_Amount_set.all %}
+									{{nutrient}}
+								{% endfor %}
+							</div>
+						</div>	
+							
+							
+					
+					{% endfor %}
+				</div>
+				
+					
+					
+			</div>
+				
+		</div>
+		
+	</form>
+{% endblock %}
