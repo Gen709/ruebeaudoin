@@ -19,9 +19,9 @@ def search_food_name(request):
         # result = FoodName.objects.all()
         if lang == "fr":
             # data_list = [{x.food_id: {'description':x.food_description_f}} for x in get_results(input_str, result)]
-            data_list = [{x.food_id: {'description':x.food_description_f}} for x in FoodName.objects.all().filter(food_description_f__icontains=input_str)]
+            data_list = [{x.food_id: {'description':x.food_description_f}} for x in FoodName.objects.filter(food_description_f__icontains=input_str).order_by('-rank', 'food_description_f')]
         else:
-            data_list = [{x.food_id: {'description':x.food_description}} for x in FoodName.objects.all().filter(food_description__icontains=input_str)]
+            data_list = [{x.food_id: {'description':x.food_description}} for x in FoodName.objects.filter(food_description__icontains=input_str).order_by('-rank', 'food_description')]
             
         # data_list = [{x.food_id: {'description':x.food_description}} for x in get_results(input_str, result)]
         data = JsonResponse(data_list, safe=False)
