@@ -76,7 +76,7 @@ def grocery_list_view(request):
     context['grocerystore_queryset'] = GroceryStore.objects.all()
     context['grocery_item_form'] = GroceryItemsForm()
     
-    return render(request, 'grocerylist/grocery_wish_list2.html', context)
+    return render(request, 'grocerylist/grocery_wish_list3.html', context)
 
 
 
