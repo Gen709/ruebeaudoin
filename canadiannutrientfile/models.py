@@ -41,7 +41,7 @@ class FoodName(models.Model):
     food_date_of_entry = models.DateField(blank=True, null=True)
     food_date_of_publication = models.DateField(blank=True, null=True)
     scientific_name = models.CharField(max_length=255)
-    # rank = models.IntegerField(default=0)
+    rank = models.IntegerField(default=0)
     
     
 class NutrientName(models.Model):
