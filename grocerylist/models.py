@@ -6,9 +6,9 @@ class TimeStampMixin(models.Model):
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
     
-
     class Meta:
         abstract = True
+
 
 class NameField(models.CharField):
     def __init__(self, *args, **kwargs):
@@ -17,6 +17,7 @@ class NameField(models.CharField):
     def get_prep_value(self, value):
         return str(value).lower()
 
+
 class GroceryStore(models.Model):
     name = NameField(max_length=100, unique=True)
     
@@ -24,8 +25,7 @@ class GroceryStore(models.Model):
 class GroceryItemStatus(models.Model):
     # Grocery history, 1) planned because needed or on special, 2) put on that week's list, 3) purchased, item closed
     name = models.CharField(max_length=50)
-    
-    
+
 
 class GroceryItems(TimeStampMixin):
     store = models.ForeignKey(GroceryStore, on_delete=models.CASCADE)
@@ -36,6 +36,7 @@ class GroceryItems(TimeStampMixin):
     
     class Meta:
         unique_together = ('created_at', 'store', 'food_name')
+  
     
 class GroceryItemHistory(models.Model):
     item = models.ForeignKey(GroceryItems, on_delete=models.CASCADE)
