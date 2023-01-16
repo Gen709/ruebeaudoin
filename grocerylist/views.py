@@ -71,14 +71,12 @@ def grocery_list_view(request):
     else:
         pass
     
-    context['groceryitems_queryset'] = GroceryItems.objects.all() # this needs to be filtered on the status wish for as of now
+    context['groceryitems_queryset'] = GroceryItems.objects.filter(status=1) # this needs to be filtered on the status wish for as of now
     context['food_name_categories_queryset'] = GroceryItems.objects.values('food_name__food_group__food_group_name_f').distinct()
     context['grocerystore_queryset'] = GroceryStore.objects.all()
     context['grocery_item_form'] = GroceryItemsForm()
     
     return render(request, 'grocerylist/grocery_wish_list3.html', context)
-
-
 
 def groceryitem_delete_view(request, pk):
     gi = GroceryItems.objects.get(id=pk)
@@ -86,3 +84,9 @@ def groceryitem_delete_view(request, pk):
     
     return redirect('wishlist')
     
+def groceryitem_buy_view(request):
+    if request.method == 'POST':
+        context = {'post': request.POST }
+    else:
+        context = {'post': "Failed"}
+        return render(request, 'grocerylist/test.html', {})

@@ -21,41 +21,64 @@
 		</form>
 		
 			{% for grocerystore in grocerystore_queryset %}
-			<div class="row gorcery-store-section mb-3">
-				<div class="col-5 col-sm-2 border">
-					<h3>{{ grocerystore.name|title }}</h3>
+
+				<div class="row gorcery-store-section mt-3 mb-3 pt-2 border rounded">
+					<div class="col-5 col-sm-2">
+						<h3>{{ grocerystore.name|title }}</h3>
+					</div>
+
+					<div class="col-1">
+						<i class="fa fa-thin fa-plus-circle add_new_frm_field_btn" type="button" id="{{ grocerystore.id }}"></i>
+					</div>
 				</div>
 				
-				<div class="col-1">
-					
-					<i class="fa fa-thin fa-plus-circle add_new_frm_field_btn" type="button" id="{{ grocerystore.id }}"></i>
-				</div>
-			</div>
-				
-				
-				
-				<div class="row">
-				{% for groceryitems in groceryitems_queryset %}
-				
-					{%  if groceryitems.store.id == grocerystore.id %}
-						<div class="row mb-3">
-							<div class="col-10 col-md-6">
-								<div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-									<label class="form-check-label" for="flexSwitchCheckDefault">{{groceryitems.food_name.food_description_f}} ({{groceryitems.price}} $ / {{groceryitems.qty}})</label>
+				{% comment %} <div class="row"> {% endcomment %}
+					{% for groceryitems in groceryitems_queryset %}
+						{%  if groceryitems.store.id == grocerystore.id %}
+							<div class="row mb-2">
+
+								<div class="col-2 col-md-1 pt-2">
+									<div class="form-check form-switch">
+										<input class="form-check-input" type="checkbox" id="is_sold_{{groceryitems.id}}">
+										{% comment %} <label class="form-check-label" for="is_sold_{{groceryitems.id}}">{{groceryitems.food_name.food_description_f}} ({{groceryitems.price}} $ / {{groceryitems.qty}})</label> {% endcomment %}
+									</div>
 								</div>
+
+								<div class="col-10 col-md-4">
+									{{groceryitems.food_name.food_description_f}}
+								</div>
+
+								<div class="col-2 col-md-1">
+									Price:
+								</div>
+								<div class="col-10 col-md-1">
+									<input class="form-control" id="price_{{groceryitems.id}}" type="text" value="{{groceryitems.price}}"></input>
+								</div>
+
+								<div class="col-2 col-md-1">
+									Unit:
+								</div>
+								<div class="col-10 col-md-1">
+									<input class="form-control" type="text" value="{{groceryitems.qty}}" id="unit_{{groceryitems.id}}"></input>
+								</div>
+
+								<div class="col-2 col-md-1">
+									Qty:
+								</div>
+								<div class="col-10 col-md-1">
+									<input class="form-control" type="text" value="{{groceryitems.qty}}" id="qty_{{groceryitems.id}}"></input>
+								</div>
+
+								<div class="col-1 col-md-1 pt-2">
+									<a href="{% url 'groceryitem-delete' groceryitems.id  %}">
+										<i class="fa fa-thin fa-minus-circle" type="button" id="{{ groceryitems.id }}" name="delete_grocery_item"></i>
+									</a>
+								</div>
+
 							</div>
-							
-							<div class="col-2 px-2">
-								<a href="{% url 'groceryitem-delete' groceryitems.id  %}">
-									<i class="fa fa-thin fa-minus-circle" type="button" id="{{ groceryitems.id }}" name="delete_grocery_item"></i>
-								</a>
-							</div>
-						</div>
-					{% endif %}
-					
-				{% endfor %}
-				</div>
+						{% endif %}
+					{% endfor %}
+				{% comment %} </div> {% endcomment %}
 			
 				
 				 
