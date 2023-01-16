@@ -32,12 +32,13 @@ class GroceryItems(TimeStampMixin):
     food_name = models.ForeignKey(FoodName, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=6, decimal_places=3)
     qty = models.CharField(max_length=10)
+    unit = models.CharField(max_length=25, blank=True, null=True, default=None)
     status=models.ForeignKey(GroceryItemStatus, on_delete=models.CASCADE, default=1)
     
     class Meta:
         unique_together = ('created_at', 'store', 'food_name')
-  
-    
+
+
 class GroceryItemHistory(models.Model):
     item = models.ForeignKey(GroceryItems, on_delete=models.CASCADE)
     status = models.ForeignKey(GroceryItemStatus, on_delete=models.CASCADE)
