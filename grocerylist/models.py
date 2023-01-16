@@ -30,8 +30,8 @@ class GroceryItemStatus(models.Model):
 class GroceryItems(TimeStampMixin):
     store = models.ForeignKey(GroceryStore, on_delete=models.CASCADE)
     food_name = models.ForeignKey(FoodName, on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=6, decimal_places=3)
-    qty = models.CharField(max_length=10)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    qty = models.DecimalField(max_digits=6, decimal_places=2)
     unit = models.CharField(max_length=25, blank=True, null=True, default=None)
     status=models.ForeignKey(GroceryItemStatus, on_delete=models.CASCADE, default=1)
     
