@@ -20,18 +20,23 @@ class NameField(models.CharField):
 
 class GroceryStore(models.Model):
     name = NameField(max_length=100, unique=True)
+    def __str__(self) -> str:
+        return self.name
     
     
 class GroceryItemStatus(models.Model):
     # Grocery history, 1) planned because needed or on special, 2) put on that week's list, 3) purchased, item closed
     name = models.CharField(max_length=50)
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class GroceryItems(TimeStampMixin):
     store = models.ForeignKey(GroceryStore, on_delete=models.CASCADE)
     food_name = models.ForeignKey(FoodName, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    qty = models.DecimalField(max_digits=6, decimal_places=2)
+    qty = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
     unit = models.CharField(max_length=25, blank=True, null=True, default=None)
     status=models.ForeignKey(GroceryItemStatus, on_delete=models.CASCADE, default=1)
     
