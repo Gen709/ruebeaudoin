@@ -1,7 +1,8 @@
 $(document).ready(function(){
 	$("#food_name").keyup(function(){
-		console.log("keyup")
+		// console.log("keyup")
 		$.ajax({
+		
 		url: "http://127.0.0.1:8000/canadiannutrientfile/search/foodname/",
 		dataType: "json",
 		data:'lang=fr&term='+$(this).val(),
@@ -35,8 +36,8 @@ $(document).ready(function(){
 });
 
 function selectFoodName(food_desc, food_id) {
-	//console.log(typeof val);
-	$("#food_name_id").val(food_id);
+	console.log("clicked");
+	$("#id_food_name").val(food_id);
 	//$('input[class="student_id"]').val(student_id);
 	$("#food_name").val(food_desc);
 	$("#food_name_suggestion_box").hide();

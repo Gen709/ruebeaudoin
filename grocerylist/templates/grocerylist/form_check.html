@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block extrahead %}
+
+<link rel="stylesheet" href="{% static 'grocerylist/css/css.css' %}">
+
+{% endblock %}
+
+
+{% block content %}
+
+	<h1>Form check</h1>
+	
+	{{form}}
+		 
+{% endblock %}

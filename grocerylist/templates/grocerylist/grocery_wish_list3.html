@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load django_bootstrap5 %}
 
 
 {% block js %}
@@ -15,11 +16,14 @@
 
 {% block content %}
 	<div class="container-fluid">
-		<form method="post" action="{% url 'wishlist' %}">
+
+		<form method="post" action="{% url 'wishlist' %}" name="ajouter_item_form">
 			{% csrf_token %}
 			<div class="test-class"></div>
 		</form>
 		
+		<form method="post" action="{% url 'wishlist-pay' %}" name="pay-form">
+
 			{% for grocerystore in grocerystore_queryset %}
 
 				<div class="row gorcery-store-section mt-3 mb-3 pt-2 border rounded">
@@ -32,128 +36,94 @@
 					</div>
 				</div>
 				
-				{% comment %} <div class="row"> {% endcomment %}
-					{% for groceryitems in groceryitems_queryset %}
-						{%  if groceryitems.store.id == grocerystore.id %}
-							<div class="row mb-2">
-
-								<div class="col-2 col-md-1 pt-2">
-									<div class="form-check form-switch">
-										<input class="form-check-input" type="checkbox" id="is_sold_{{groceryitems.id}}">
-										{% comment %} <label class="form-check-label" for="is_sold_{{groceryitems.id}}">{{groceryitems.food_name.food_description_f}} ({{groceryitems.price}} $ / {{groceryitems.qty}})</label> {% endcomment %}
-									</div>
-								</div>
-
-								<div class="col-10 col-md-4">
-									{{groceryitems.food_name.food_description_f}}
-								</div>
-
-								<div class="col-2 col-md-1">
-									Price:
-								</div>
-								<div class="col-10 col-md-1">
-									<input class="form-control" id="price_{{groceryitems.id}}" type="text" value="{{groceryitems.price}}"></input>
-								</div>
-
-								<div class="col-2 col-md-1">
-									Unit:
-								</div>
-								<div class="col-10 col-md-1">
-									<input class="form-control" type="text" value="{{groceryitems.qty}}" id="unit_{{groceryitems.id}}"></input>
-								</div>
-
-								<div class="col-2 col-md-1">
-									Qty:
-								</div>
-								<div class="col-10 col-md-1">
-									<input class="form-control" type="text" value="{{groceryitems.qty}}" id="qty_{{groceryitems.id}}"></input>
-								</div>
-
-								<div class="col-1 col-md-1 pt-2">
-									<a href="{% url 'groceryitem-delete' groceryitems.id  %}">
-										<i class="fa fa-thin fa-minus-circle" type="button" id="{{ groceryitems.id }}" name="delete_grocery_item"></i>
-									</a>
-								</div>
-
-							</div>
-						{% endif %}
-					{% endfor %}
-				{% comment %} </div> {% endcomment %}
-			
 				
-				 
-		{% endfor %}
-		<div class="row">
-			<button type="button" class="btn btn-success">
-				Pay
-			</button>
-			<!-- Button trigger modal -->
-			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-		  		Ajouter Item
-			</button>
-		</div>
-		
-		
-		
-		<!-- Modal -->
-		<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-dialog-centered">
-		    <div class="modal-content">
-		    
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="staticBackdropLabel">Ajout d'un item</h5>
-		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		      </div>
-		      
-			<form method="post" action="{% url 'wishlist' %}">
-			{% csrf_token %}
-			<div class="modal-body">
+				{% for groceryitems in groceryitems_queryset %}
+					{%  if groceryitems.store.id == grocerystore.id %}
+						<div class="row mb-2 item-section" id="groceryitems.id">
 
-				<div class="row grocery-item-section">
-					<div class="col">
-						<!-- <input type="hidden" class="form-control" value="`+ goccery_store_id +`" name="grocerystore_id"> -->
-						<select class="form-select" aria-label="Default select example" name="grocerystore_id">
-							{% for grocerystore in grocerystore_queryset %}
-								<option value="{{grocerystore.id}}">{{grocerystore.name}}</option>
-							{% endfor %}
-						</select>
-						<div class="col-md">
-							<!-- food name -->
-							<label for="foodname" class="form-label">Item</label>
-							<input type="text" class="form-control" placeholder="" name="food_name" id="food_name">
-							<input type="hidden"  name="food_name_id" id="food_name_id" value="N/A">
-							<div name="food_name_suggestion_box" class="suggestion_box" id="food_name_suggestion_box"></div>
+							<div class="col-2 col-md-1 pt-2">
+								<div class="form-check form-switch">
+									<input class="form-check-input" type="checkbox" id="isSold_{{groceryitems.id}}">
+									{% comment %} <label class="form-check-label" for="is_sold_{{groceryitems.id}}">{{groceryitems.food_name.food_description_f}} ({{groceryitems.price}} $ / {{groceryitems.qty}})</label> {% endcomment %}
+								</div>
+							</div>
+
+							<div class="col-10 col-md-4">
+								{{groceryitems.food_name.food_description_f}}
+							</div>
+
+							<div class="col-2 col-md-1 mt-2">
+								Price:
+							</div>
+							<div class="col-10 col-md-1">
+								<input class="form-control" id="price_{{groceryitems.id}}" type="text" value="{{groceryitems.price}}"></input>
+							</div>
+
+							<div class="col-2 col-md-1">
+								Unit:
+							</div>
+							<div class="col-10 col-md-1">
+								<input class="form-control" id="unit_{{groceryitems.id}}" type="text" value="{{groceryitems.unit}}"></input>
+							</div>
+
+							<div class="col-2 col-md-1">
+								Qty:
+							</div>
+							<div class="col-10 col-md-1">
+								<input class="form-control" id="qty_{{groceryitems.id}}" type="text" value="{{groceryitems.qty}}"></input>
+							</div>
+
+							<div class="col-1 col-md-1 pt-2">
+								<a href="{% url 'groceryitem-delete' groceryitems.id  %}">
+									<i class="fa fa-thin fa-minus-circle" type="button" id="{{ groceryitems.id }}" name="delete_grocery_item"></i>
+								</a>
+							</div>
+
 						</div>
-						
-						<div class="col-md">
-							<!-- price -->
-							<label for="price" class="form-label">Prix</label>
-							<input type="text" class="form-control" placeholder="" name="price">
-						</div>
-						
-						<div class="col-md">
-							<!-- qty -->
-							<label for="qty" class="form-label">Qty.</label>
-							<input type="text" class="form-control" placeholder="" name="qty">
-						</div>
-						
-						
+					{% endif %}
+				{% endfor %}
+
+			{% endfor %}
+
+			<div class="row">
+				<button type="submit" class="btn btn-success">
+					Pay
+				</button>
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+					Ajouter Item
+				</button>
+			</div>
+
+		</form
+		
+		{% comment %} Modal {% endcomment %}
+		<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+				
+					<div class="modal-header">
+						<h5 class="modal-title" id="staticBackdropLabel">Ajout d'un item</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
+					
+					<form method="post" action="{% url 'wishlist' %}">
+						{% csrf_token %}
+						<div class="modal-body">
+							{% include "grocerylist/test_form.html" %}
+						</div>
+					
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+							<button type="submit" class="btn btn-primary">Ajouter</button>
+						</div>
+						
+					</form>
+					
 				</div>
 			</div>
-		      
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-		        <button type="submit" class="btn btn-primary">Ajouter</button>
-		      </div>
-			</form>
-		    </div>
-		  </div>
 		</div>
-		
-		
-		
-		
+
 	</div>
 	
 {% endblock %}

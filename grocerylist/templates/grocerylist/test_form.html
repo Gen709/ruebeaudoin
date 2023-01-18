@@ -1,0 +1,51 @@
+
+
+
+
+<div class="mb-3">
+    <label class="form-label" for="id_store">Store</label>
+    <select name="store" class="form-select" required="" id="id_store">
+        <option value="" selected="">---------</option>
+        <option value="8">adonis</option>
+        <option value="7">costco</option>
+        <option value="2">iga</option>
+        <option value="6">kim-phat</option>
+        <option value="4">maxi</option>
+        <option value="1">metro</option>
+        <option value="5">super-c</option>
+    </select>
+</div>
+
+<div class="mb-3">
+    <label class="form-label" for="id_food_name">Food name</label>
+    <input name="food_name_id" class="form-control" required="" id="food_name">
+    <input type="hidden" name="food_name" id="id_food_name" value="N/A">
+    <div name="food_name_suggestion_box" class="suggestion_box" id="food_name_suggestion_box"></div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label" for="id_price">Price</label>
+    <input type="number" name="price" step="0.01" class="form-control" placeholder="Price" required="" id="id_price">
+</div>
+
+<div class="mb-3">
+    <label class="form-label" for="id_qty">Qty</label>
+    <input type="number" name="qty" step="0.01" class="form-control" placeholder="Qty" required="" id="id_qty">
+</div>
+
+<div class="mb-3">
+    <label class="form-label" for="id_unit">Unit</label>
+    <input type="text" name="unit" maxlength="25" class="form-control" placeholder="Unit" id="id_unit">
+</div>
+
+<input type="hidden" name="status" id="id_status" value="1">
+{% comment %} <div class="mb-3">
+    <label class="form-label" for="id_status">Status</label>
+    <select name="status" class="form-select" id="id_status">
+        <option value="1" selected="">en attente</option>
+        <option value="2">acheter</option>
+    </select>
+</div>
+ {% endcomment %}
+
+   
