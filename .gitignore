@@ -16,6 +16,7 @@ db.sqlite3
 /mysite/settings.py
 settings.py
 mysite/settings.py
+/Users/Louis-Philippe/Sites/709ruebeaudoin/mysite/settings.py
 
 # macOS
 ._*
@@ -23,3 +24,41 @@ mysite/settings.py
 .fseventsd
 .Spotlight-V100
 
+html/query1.finance.yahoo.com/bce_1999-10-03_2023-01-09.pickle
+html/query1.finance.yahoo.com/bce_1999-10-03_2023-01-10.pickle
+html/query1.finance.yahoo.com/bce_1999-10-03_2023-01-11.pickle
+html/query1.finance.yahoo.com/bce_1999-10-03_2023-01-12.pickle
+html/query1.finance.yahoo.com/psa_1999-10-03_2023-01-09.pickle
+html/query1.finance.yahoo.com/psa_1999-10-03_2023-01-10.pickle
+html/query1.finance.yahoo.com/psa_1999-10-03_2023-01-11.pickle
+html/query1.finance.yahoo.com/psa_1999-10-03_2023-01-12.pickle
+html/query1.finance.yahoo.com/xiu_1999-10-03_2023-01-09.pickle
+html/query1.finance.yahoo.com/xiu_1999-10-03_2023-01-10.pickle
+html/query1.finance.yahoo.com/xiu_1999-10-03_2023-01-11.pickle
+html/query1.finance.yahoo.com/xiu_1999-10-03_2023-01-12.pickle
+html/query1.finance.yahoo.com/xwd_1999-10-03_2023-01-09.pickle
+html/query1.finance.yahoo.com/xwd_1999-10-03_2023-01-10.pickle
+html/query1.finance.yahoo.com/xwd_1999-10-03_2023-01-11.pickle
+html/query1.finance.yahoo.com/xwd_1999-10-03_2023-01-12.pickle
+html/query1.finance.yahoo.com/zag_1999-10-03_2023-01-09.pickle
+html/query1.finance.yahoo.com/zag_1999-10-03_2023-01-10.pickle
+html/query1.finance.yahoo.com/zag_1999-10-03_2023-01-11.pickle
+html/query1.finance.yahoo.com/zag_1999-10-03_2023-01-12.pickle
+Genevieve General.ipynb
+Grocery list weight.ipynb
+portfolio rebalancing.ipynb
+recipe web.ipynb
+Untitled.ipynb
+.ipynb_checkpoints/Genevieve General-checkpoint.ipynb
+.ipynb_checkpoints/Grocery list weight-checkpoint.ipynb
+.ipynb_checkpoints/portfolio rebalancing-checkpoint.ipynb
+.ipynb_checkpoints/recipe web-checkpoint.ipynb
+.ipynb_checkpoints/Untitled-checkpoint.ipynb
+data/MySQL/Untitled.sql
+html/ca.finance.yahoo.com/XIU-2023-01-08.pickle
+html/cooking.nytimes.com/%2Frecipes%2F1016062-red-lentil-soup.pickle
+html/cooking.nytimes.com/%2Frecipes%2F1017747-meera-sodhas-naan.pickle
+html/cooking.nytimes.com/%2Frecipes%2F1018909-classic-zucchini-bread.pickle
+html/cooking.nytimes.com/%2Frecipes%2F1019621-sonoran-style-flour-tortillas.pickle
+html/cooking.nytimes.com/%2Frecipes%2F1022972-sunday-sauce.pickle
+html/www.ricardocuisine.com/%2Frecettes%2F4726-cotes-levees-au-barbecue-les-meilleures.pickle
