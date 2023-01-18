@@ -43,7 +43,7 @@
 
 							<div class="col-2 col-md-1 pt-2">
 								<div class="form-check form-switch">
-									<input class="form-check-input" type="checkbox" id="isSold_{{groceryitems.id}}">
+									<input class="form-check-input" id="isSold_{{groceryitems.id}}" type="checkbox" name="isSold_{{groceryitems.id}}">
 									{% comment %} <label class="form-check-label" for="is_sold_{{groceryitems.id}}">{{groceryitems.food_name.food_description_f}} ({{groceryitems.price}} $ / {{groceryitems.qty}})</label> {% endcomment %}
 								</div>
 							</div>
@@ -56,21 +56,21 @@
 								Price:
 							</div>
 							<div class="col-10 col-md-1">
-								<input class="form-control" id="price_{{groceryitems.id}}" type="text" value="{{groceryitems.price}}"></input>
+								<input class="form-control" id="price_{{groceryitems.id}}" type="text" value="{{groceryitems.price}}" name="price_{{groceryitems.id}}"></input>
 							</div>
 
 							<div class="col-2 col-md-1">
 								Unit:
 							</div>
 							<div class="col-10 col-md-1">
-								<input class="form-control" id="unit_{{groceryitems.id}}" type="text" value="{{groceryitems.unit}}"></input>
+								<input class="form-control" id="unit_{{groceryitems.id}}" type="text" value="{{groceryitems.unit}}" name="unit_{{groceryitems.id}}"></input>
 							</div>
 
 							<div class="col-2 col-md-1">
 								Qty:
 							</div>
 							<div class="col-10 col-md-1">
-								<input class="form-control" id="qty_{{groceryitems.id}}" type="text" value="{{groceryitems.qty}}"></input>
+								<input class="form-control" id="qty_{{groceryitems.id}}" type="text" value="{{groceryitems.qty}}" name="qty_{{groceryitems.id}}"></input>
 							</div>
 
 							<div class="col-1 col-md-1 pt-2">

@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 # from .models import GroceryStore
 from .forms import GroceryStoreModelForm, GroceryItemsForm
-from .models import GroceryStore, GroceryItems, GroceryItemHistory
+from .models import GroceryStore, GroceryItems, GroceryItemStatus
 from canadiannutrientfile.models import FoodName
 from datetime import date
 # Create your views here.
@@ -128,8 +128,28 @@ def grocery_store_list_update_view(request):
 
 
 def grocery_store_list_pay_view(request):
-    context={ }
-    return redirect('wishlist')
+    value_dict = {}
+    for k,v in request.POST.items():
+        if k != "csrfmiddlewaretoken":
+            field = k.split("_")[0]
+            groceryItemId = k.split("_")[1]
+            value = v
+            if groceryItemId in value_dict:
+                value_dict[groceryItemId][field] = value
+            else:
+                value_dict[groceryItemId] = {field: value}
+
+    for k,v in value_dict.items():
+        if "isSold" in v:
+            groceryItem = GroceryItems.objects.get(id=int(k))
+            groceryItem.status = GroceryItemStatus.objects.get(id=2)
+            groceryItem.save()
+
+            
+    context={'form': request.POST, 'value_dict': value_dict}
+
+    # return redirect('wishlist')
+    return render(request,"grocerylist/form_check.html", context)
 
 
 def groceryitem_delete_view(request, pk):
