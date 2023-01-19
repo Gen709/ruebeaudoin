@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extrahead%}
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+	<link rel="stylesheet" href="{% static 'cal/css/cal.css' %}" />
+{% endblock %}
+{% comment %} https://mdbootstrap.com/docs/standard/plugins/calendar/ {% endcomment %}
+{% block content %}
+	<div class="row justify-content-center align-items-center border rounded" name="outline">
+		<div class="row mt-5 mb-3" name="menu">
+			<div class="col-12 col-md-1 mt-3"> <button type="button" class="btn btn-light btn-sm">TODAY</button></div>
+			<div class="col-6 col-md-1 mt-3">
+				<button type="button" class="btn btn-light">
+					<span class="material-symbols-outlined">
+						chevron_left
+					</span>
+				</button>
+			</div>
+			<div class="col-6 col-md-1 mt-3">
+				<button type="button" class="btn btn-light">
+					<span class="material-symbols-outlined">
+						chevron_right
+					</span>
+				</button>
+			</div>
+			<div class="col-12 col-md mt-3"> <h3>{{today}}</h3></div>
+			<div class="col-6 col-md-1 col-md-1 mt-3"> 
+				<div class="dropdown">
+					<button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+					</button>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+					  <li><a class="dropdown-item" href="#">Month</a></li>
+					  <li><a class="dropdown-item" href="#">Week</a></li>
+					  <li><a class="dropdown-item" href="#">List</a></li>
+					</ul>
+				  </div>			  
+			</div>
+			<div class="col-6 col-md-2 mt-3"> 
+				<button type="button" class="btn btn-primary" name="add_event">
+					ADD EVENT
+				</button>
+			</div>
+		</div>
+		<div class="row px-5">
+			<table class="table table-bordered rounded">
+				<thead>
+				</thead>
+				<tbody>
+					{% for date in dates %}
+						{% if date.0.3 == 6 %}
+							<tr><td data-date={{ date.1 }}>
+								<div>{{ date.0.2 }}</div>
+								<div class="event-wrapper"></div>
+							</td>
+						{% elif date.0.3 == 5 %}
+							<td data-date={{ date.1 }}>
+								<div>{{ date.0.2 }}</div>
+								<div class="event-wrapper"></div>
+							</td></tr>
+						{% else %}
+						<td data-date={{ date.1 }}>
+							<div>{{ date.0.2 }}</div>
+							<div class="event-wrapper"></div>
+						{% endif %}
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+{% endblock %}
