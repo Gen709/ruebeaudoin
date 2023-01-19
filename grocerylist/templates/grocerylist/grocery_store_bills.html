@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %}
+
+<link rel="stylesheet" href="{% static 'grocerylist/css/css.css' %}">
+
+{% endblock %}
+
+
+
+{% block content %}
+	
+	<h1>Grocery store list
+	<a href="{% url 'grocery-store-create' %}" class="btn btn-success" role="button"> Ajouter + </a>
+	</h1>
+	
+	
+	<div class="container-fluid">
+	{% for grocery_store in queryset %}
+		<div class="row">
+			<div class=col>
+				{{grocery_store.name}}
+			</div>
+			
+			<div class="col">
+				<a href="#">
+					<i class="fa fa-thin fa-minus-circle" type="button" id="{{ grocery_store.id }}" name="delete_grocery_item"></i>
+				</a>
+			</div>
+			
+		</div>
+	{% endfor %}
+	</div>
+{% endblock %}

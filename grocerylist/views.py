@@ -148,7 +148,30 @@ def grocery_store_list_pay_view(request):
             
     context={'form': request.POST, 'value_dict': value_dict}
 
-    # return redirect('wishlist')
+    return redirect('wishlist')
+    # return render(request,"grocerylist/form_check.html", context)
+
+
+def grocerylist_history(request):
+    # https://stackoverflow.com/questions/42148336/group-by-weeks-months-days
+    from django.db.models.functions import ExtractWeek, ExtractYear
+    from django.db.models import Sum, F
+
+    week_list = list(range(53))
+    store_amount = []
+    grocery_store_list = [x for x in GroceryStore.objects.all()]
+
+    stats = (GroceryItems.objects.select_related('store')
+            .annotate(year=ExtractYear('updated_at'))
+            .annotate(week=ExtractWeek('updated_at'))
+            .values('store__name', 'year', 'week')
+            .annotate(total_amount=Sum(F('qty') * F('price')))
+    )
+
+    
+
+    context = {"form":stats }
+
     return render(request,"grocerylist/form_check.html", context)
 
 

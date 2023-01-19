@@ -12,19 +12,18 @@
 {% block content %}
 
 	<h1>Form check</h1>
-	
-	{{form}}
+	{{ form}}
+	{% for data_dict in form %}
+		<div class="row">
+			{{data_dict.store.name}} {{ data_dict }}
+		</div>
+		{% comment %} {% for k, v  in data_dict.items %}
+			<div class="row>
+				{{ k }} {{ v }}
+			</div>
+		{% endfor %} {% endcomment %}
+	{% endfor %}
 
-	{% for k,v in form.items %}
-		<div class="rows">
-			{{ k }} {{ v }}
-		</div>
-	{% endfor%}
-		value dict
-	{% for k,v in value_dict.items %}
-		<div class="rows">
-			{{ k }} {{ v }}
-		</div>
-	{% endfor%}
+	
 		 
 {% endblock %}
