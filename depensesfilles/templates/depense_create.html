@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load bootstrap %}
 
 {% block content %}
 	<form action="{%url 'depense-create-view' %}" method="post" enctype='multipart/form-data'>
 	{% csrf_token %}
 		<table>
-		{{ form.as_table}}
+		{{ form|bootstrap }}
 		</table>
 		<input type="submit" value="Submit">
 	</form>

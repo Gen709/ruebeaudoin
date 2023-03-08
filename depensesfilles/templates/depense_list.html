@@ -2,34 +2,50 @@
 {% load static %}
 
 {% block content %}
-	
-	<h1>Liste des dépenses 
-		<a href="{% url 'depense-create-view' %}" class="btn btn-success" role="button"> Ajouter + </a>
-	</h1>
-		<table class="table table-striped">
+	<div class="row mt-5">
+		<div class="row">
+			<h1>Liste des dépenses 
+				<a href="{% url 'depense-create-view' %}" class="btn btn-success" role="button"> Ajouter + </a>
+			</h1>
+		</div>
+		<div class="row mt-5 px-4">
+			<table class="table table-striped">
+				<tr>
+					<th>Date</th>
+					<th>Cat.</th>
+					<th>Desc.</th>
+					<th>Montant</th>
+					<th>Status</th>
+					<th>View</th>
+					<th>Update</th>
+					<th>Delete</th>
+				</tr>
+			{% for depense in depense_list %}
 			<tr>
-				<th>Date</th>
-				<th>Cat.</th>
-				<th>Desc.</th>
-				<th>Montant</th>
-				<th>Status</th>
-				<th>View</th>
-				<th>Update</th>
-				<th>Delete</th>
+				<td>{{depense.date}}</td>
+				<td>{{depense.categorie}}</td>
+				<td>{{depense.description}}</td>
+				<td>{{depense.amount}}</td>
+				<td>{{depense.status}}</td>
+				<td><a href="">view</a></td>
+				<td><a href="">update</a></td>
+				<td><a href="">delete</a></td>
 			</tr>
-		{% for depense in depense_list %}
-		<tr>
-			<td>{{depense.date}}</td>
-			<td>{{depense.categorie}}</td>
-			<td>{{depense.description}}</td>
-			<td>{{depense.amount}}</td>
-			<td>{{depense.status}}</td>
-			<td><a href="">view</a></td>
-			<td><a href="">update</a></td>
-			<td><a href="">delete</a></td>
-		</tr>
-		{% endfor %}
-		</table>
+			{% endfor %}
+			</table>
+		</div>
+
+		<div class="row mt-5 border rounded">
+			<div class="col">
+				Total:
+			</div>
+
+			<div class="col">
+				{{total_unpaid.total_unpaid}}
+			</div>
+
+		</div>
+	</div>
 		
 	
 {% endblock %}

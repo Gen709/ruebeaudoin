@@ -1,9 +1,11 @@
 from django.urls import path
-from .views import DepensesCreateView, DepenseStatusCreateView, DepensesDetailView, DepensesListView, CategorieDepenseCreateView, CategorieDepenseDetailView
+from .views import DepensesCreateView, DepenseStatusCreateView, DepensesDetailView, \
+    DepensesListView, CategorieDepenseCreateView, CategorieDepenseDetailView, depenses_create
 
 
 urlpatterns = [
-    path('depenses/create/', DepensesCreateView.as_view(template_name="depense_create.html"), name="depense-create-view"),
+    # path('depenses/create/', DepensesCreateView.as_view(template_name="depense_create.html"), name="depense-create-view"),
+    path('depenses/create/', depenses_create, name="depense-create-view"),
     path('depenses/list/', DepensesListView.as_view(template_name="depense_list.html"), name="depense-list-view"),
     path('depenses/<int:pk>', DepensesDetailView.as_view(template_name="depense_detail.html"), name="depense-detail-view"), 
     

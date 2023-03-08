@@ -1,10 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load bootstrap %}
+
+
 
 {% block content %}
+	{{ form.media }}
 	<form action="{% url 'depense-create-view' %}" method="post">
 	{% csrf_token %}
-		{{ form.as_p }}
-		<input type="submit" value="Submit">
+		<div class="row mt-4">
+			<div class='row mt-4 mb-3 px-3'>
+				<h3>Formulaire dépense filles</h3>
+			</div>
+			{{ form|bootstrap }}
+			<div class="row mt-4 px-5">
+				<input class="btn btn-primary" type="submit" value="Submit">
+			</div>
+			<div class="row pb-5 px-5">
+				<a href="{% url 'depense-list-view' %}" class="btn btn-danger">Annuler</a>
+			</div>
+		</div>
 	</form>
 {% endblock %}
