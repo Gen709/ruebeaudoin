@@ -31,7 +31,7 @@ class Depenses(TimeStampMixin):
     categorie = models.ForeignKey(Categorie, on_delete=models.SET_NULL, null=True)
     amount = models.DecimalField(max_digits=7, decimal_places=2)
     status = models.ForeignKey(DepenseStatus, on_delete=models.SET_NULL, null=True)
-    ref = models.ImageField(upload_to='bills')
+    ref = models.ImageField(upload_to='bills', blank=True, null=True, default=None)
     
     def get_absolute_url(self):
         return reverse('depense-detail-view', kwargs={'pk' : self.pk})
