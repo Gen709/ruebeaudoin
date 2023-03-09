@@ -24,8 +24,8 @@ def depenses_create(request):
             return render(request, 'depensesfilles/depense_create.html', {'form': form})
     elif request.method == 'GET':
         default_data_dict = {'date': dt.strftime(dt.today(), '%Y-%m-%d'),
-                             'categorie': Categorie.objects.get(id=8),
-                             'status': DepenseStatus.objects.get(id=1)}
+                             'categorie': Categorie.objects.get(desc='Autre'),
+                             'status': DepenseStatus.objects.get(desc='Non remboursée')}
         form = DepensesModelForm(default_data_dict)
         return render(request, 'depensesfilles/depense_create.html', {'form': form})
     
